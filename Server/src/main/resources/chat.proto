@@ -1,0 +1,10 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+service Chat {
+  rpc Write(ChatLog) returns (google.protobuf.Empty) {}
+  rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
+}
+
+message ChatLog{
+  string message=1;
+}
