@@ -64,7 +64,7 @@ public final class ChatGrpc {
       fullMethodName = SERVICE_NAME + '/' + "Subscribe",
       requestType = com.google.protobuf.Empty.class,
       responseType = ChatOuterClass.ChatLog.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       ChatOuterClass.ChatLog> getSubscribeMethod() {
     io.grpc.MethodDescriptor<com.google.protobuf.Empty, ChatOuterClass.ChatLog> getSubscribeMethod;
@@ -73,7 +73,7 @@ public final class ChatGrpc {
         if ((getSubscribeMethod = ChatGrpc.getSubscribeMethod) == null) {
           ChatGrpc.getSubscribeMethod = getSubscribeMethod = 
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, ChatOuterClass.ChatLog>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Chat", "Subscribe"))
               .setSampledToLocalTracing(true)
@@ -180,7 +180,7 @@ public final class ChatGrpc {
                   this, METHODID_WRITE)))
           .addMethod(
             getSubscribeMethod(),
-            asyncServerStreamingCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.Empty,
                 ChatOuterClass.ChatLog>(
@@ -226,7 +226,7 @@ public final class ChatGrpc {
      */
     public void subscribe(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<ChatOuterClass.ChatLog> responseObserver) {
-      asyncServerStreamingCall(
+      asyncUnaryCall(
           getChannel().newCall(getSubscribeMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -266,9 +266,8 @@ public final class ChatGrpc {
 
     /**
      */
-    public java.util.Iterator<ChatOuterClass.ChatLog> subscribe(
-        com.google.protobuf.Empty request) {
-      return blockingServerStreamingCall(
+    public ChatOuterClass.ChatLog subscribe(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
           getChannel(), getSubscribeMethod(), getCallOptions(), request);
     }
 
@@ -304,6 +303,14 @@ public final class ChatGrpc {
         ChatOuterClass.ChatLog request) {
       return futureUnaryCall(
           getChannel().newCall(getWriteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ChatOuterClass.ChatLog> subscribe(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSubscribeMethod(), getCallOptions()), request);
     }
 
     /**

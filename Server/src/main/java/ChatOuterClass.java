@@ -1466,11 +1466,11 @@ public final class ChatOuterClass {
       "o\032\037google/protobuf/timestamp.proto\"R\n\007Ch" +
       "atLog\022\017\n\007message\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022(\n\004" +
       "time\030\003 \001(\0132\032.google.protobuf.Timestamp\"\024" +
-      "\n\004User\022\014\n\004name\030\001 \001(\t2\220\001\n\004Chat\022+\n\005Write\022\010" +
-      ".ChatLog\032\026.google.protobuf.Empty\"\000\0221\n\tSu" +
+      "\n\004User\022\014\n\004name\030\001 \001(\t2\216\001\n\004Chat\022+\n\005Write\022\010" +
+      ".ChatLog\032\026.google.protobuf.Empty\"\000\022/\n\tSu" +
       "bscribe\022\026.google.protobuf.Empty\032\010.ChatLo" +
-      "g\"\0000\001\022(\n\005LogIn\022\005.User\032\026.google.protobuf." +
-      "Empty\"\000b\006proto3"
+      "g\"\000\022(\n\005LogIn\022\005.User\032\026.google.protobuf.Em" +
+      "pty\"\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

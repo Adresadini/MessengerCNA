@@ -1,18 +1,19 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+
 service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}
   rpc Subscribe(google.protobuf.Empty) returns (ChatLog) {}
   rpc LogIn(User) returns (google.protobuf.Empty) {}
 }
 
-message ChatLog{
-  string message=1;
-  string name=2;
-  google.protobuf.Timestamp time=3;
+message ChatLog {
+  string message = 1;
+  string name = 2;
+  google.protobuf.Timestamp time = 3;
 }
 
 message User{
-  string name=1;
+  string name = 1;
 }
