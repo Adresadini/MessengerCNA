@@ -27,7 +27,7 @@ public final class ChatOuterClass
         /**
          * <code>string message = 1;</code>
          */
-        java.lang.String getMessage();
+        String getMessage();
 
         /**
          * <code>string message = 1;</code>
@@ -38,7 +38,7 @@ public final class ChatOuterClass
         /**
          * <code>string name = 2;</code>
          */
-        java.lang.String getName();
+        String getName();
 
         /**
          * <code>string name = 2;</code>
@@ -84,7 +84,7 @@ public final class ChatOuterClass
             name_ = "";
         }
 
-        @java.lang.Override
+        @Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields()
         {
@@ -99,7 +99,7 @@ public final class ChatOuterClass
             this();
             if (extensionRegistry == null)
             {
-                throw new java.lang.NullPointerException();
+                throw new NullPointerException();
             }
             int mutable_bitField0_ = 0;
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -117,14 +117,14 @@ public final class ChatOuterClass
                             break;
                         case 10:
                         {
-                            java.lang.String s = input.readStringRequireUtf8();
+                            String s = input.readStringRequireUtf8();
 
                             message_ = s;
                             break;
                         }
                         case 18:
                         {
-                            java.lang.String s = input.readStringRequireUtf8();
+                            String s = input.readStringRequireUtf8();
 
                             name_ = s;
                             break;
@@ -176,32 +176,32 @@ public final class ChatOuterClass
             return ChatOuterClass.internal_static_ChatLog_descriptor;
         }
 
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @Override
+        protected FieldAccessorTable
         internalGetFieldAccessorTable()
         {
             return ChatOuterClass.internal_static_ChatLog_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            ChatOuterClass.ChatLog.class, ChatOuterClass.ChatLog.Builder.class);
+                            ChatLog.class, Builder.class);
         }
 
         public static final int MESSAGE_FIELD_NUMBER = 1;
-        private volatile java.lang.Object message_;
+        private volatile Object message_;
 
         /**
          * <code>string message = 1;</code>
          */
-        public java.lang.String getMessage()
+        public String getMessage()
         {
-            java.lang.Object ref = message_;
-            if (ref instanceof java.lang.String)
+            Object ref = message_;
+            if (ref instanceof String)
             {
-                return (java.lang.String) ref;
+                return (String) ref;
             } else
             {
                 com.google.protobuf.ByteString bs =
                         (com.google.protobuf.ByteString) ref;
-                java.lang.String s = bs.toStringUtf8();
+                String s = bs.toStringUtf8();
                 message_ = s;
                 return s;
             }
@@ -213,12 +213,12 @@ public final class ChatOuterClass
         public com.google.protobuf.ByteString
         getMessageBytes()
         {
-            java.lang.Object ref = message_;
-            if (ref instanceof java.lang.String)
+            Object ref = message_;
+            if (ref instanceof String)
             {
                 com.google.protobuf.ByteString b =
                         com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                                (String) ref);
                 message_ = b;
                 return b;
             } else
@@ -228,22 +228,22 @@ public final class ChatOuterClass
         }
 
         public static final int NAME_FIELD_NUMBER = 2;
-        private volatile java.lang.Object name_;
+        private volatile Object name_;
 
         /**
          * <code>string name = 2;</code>
          */
-        public java.lang.String getName()
+        public String getName()
         {
-            java.lang.Object ref = name_;
-            if (ref instanceof java.lang.String)
+            Object ref = name_;
+            if (ref instanceof String)
             {
-                return (java.lang.String) ref;
+                return (String) ref;
             } else
             {
                 com.google.protobuf.ByteString bs =
                         (com.google.protobuf.ByteString) ref;
-                java.lang.String s = bs.toStringUtf8();
+                String s = bs.toStringUtf8();
                 name_ = s;
                 return s;
             }
@@ -255,12 +255,12 @@ public final class ChatOuterClass
         public com.google.protobuf.ByteString
         getNameBytes()
         {
-            java.lang.Object ref = name_;
-            if (ref instanceof java.lang.String)
+            Object ref = name_;
+            if (ref instanceof String)
             {
                 com.google.protobuf.ByteString b =
                         com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                                (String) ref);
                 name_ = b;
                 return b;
             } else
@@ -298,7 +298,7 @@ public final class ChatOuterClass
 
         private byte memoizedIsInitialized = -1;
 
-        @java.lang.Override
+        @Override
         public final boolean isInitialized()
         {
             byte isInitialized = memoizedIsInitialized;
@@ -309,7 +309,7 @@ public final class ChatOuterClass
             return true;
         }
 
-        @java.lang.Override
+        @Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                 throws java.io.IOException
         {
@@ -328,7 +328,7 @@ public final class ChatOuterClass
             unknownFields.writeTo(output);
         }
 
-        @java.lang.Override
+        @Override
         public int getSerializedSize()
         {
             int size = memoizedSize;
@@ -353,18 +353,18 @@ public final class ChatOuterClass
             return size;
         }
 
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj)
+        @Override
+        public boolean equals(final Object obj)
         {
             if (obj == this)
             {
                 return true;
             }
-            if (!(obj instanceof ChatOuterClass.ChatLog))
+            if (!(obj instanceof ChatLog))
             {
                 return super.equals(obj);
             }
-            ChatOuterClass.ChatLog other = (ChatOuterClass.ChatLog) obj;
+            ChatLog other = (ChatLog) obj;
 
             boolean result = true;
             result = result && getMessage()
@@ -381,7 +381,7 @@ public final class ChatOuterClass
             return result;
         }
 
-        @java.lang.Override
+        @Override
         public int hashCode()
         {
             if (memoizedHashCode != 0)
@@ -404,14 +404,14 @@ public final class ChatOuterClass
             return hash;
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 java.nio.ByteBuffer data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 java.nio.ByteBuffer data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -419,14 +419,14 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 com.google.protobuf.ByteString data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 com.google.protobuf.ByteString data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -434,13 +434,13 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(byte[] data)
+        public static ChatLog parseFrom(byte[] data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 byte[] data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -448,14 +448,14 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(java.io.InputStream input)
+        public static ChatLog parseFrom(java.io.InputStream input)
                 throws java.io.IOException
         {
             return com.google.protobuf.GeneratedMessageV3
                     .parseWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -464,14 +464,14 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static ChatOuterClass.ChatLog parseDelimitedFrom(java.io.InputStream input)
+        public static ChatLog parseDelimitedFrom(java.io.InputStream input)
                 throws java.io.IOException
         {
             return com.google.protobuf.GeneratedMessageV3
                     .parseDelimitedWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.ChatLog parseDelimitedFrom(
+        public static ChatLog parseDelimitedFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -480,7 +480,7 @@ public final class ChatOuterClass
                     .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 com.google.protobuf.CodedInputStream input)
                 throws java.io.IOException
         {
@@ -488,7 +488,7 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.ChatLog parseFrom(
+        public static ChatLog parseFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -497,7 +497,7 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
-        @java.lang.Override
+        @Override
         public Builder newBuilderForType()
         {
             return newBuilder();
@@ -508,21 +508,21 @@ public final class ChatOuterClass
             return DEFAULT_INSTANCE.toBuilder();
         }
 
-        public static Builder newBuilder(ChatOuterClass.ChatLog prototype)
+        public static Builder newBuilder(ChatLog prototype)
         {
             return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
         }
 
-        @java.lang.Override
+        @Override
         public Builder toBuilder()
         {
             return this == DEFAULT_INSTANCE
                     ? new Builder() : new Builder().mergeFrom(this);
         }
 
-        @java.lang.Override
+        @Override
         protected Builder newBuilderForType(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent)
+                BuilderParent parent)
         {
             Builder builder = new Builder(parent);
             return builder;
@@ -534,7 +534,7 @@ public final class ChatOuterClass
         public static final class Builder extends
                 com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
                 // @@protoc_insertion_point(builder_implements:ChatLog)
-                ChatOuterClass.ChatLogOrBuilder
+                ChatLogOrBuilder
         {
             public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor()
@@ -542,13 +542,13 @@ public final class ChatOuterClass
                 return ChatOuterClass.internal_static_ChatLog_descriptor;
             }
 
-            @java.lang.Override
-            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            @Override
+            protected FieldAccessorTable
             internalGetFieldAccessorTable()
             {
                 return ChatOuterClass.internal_static_ChatLog_fieldAccessorTable
                         .ensureFieldAccessorsInitialized(
-                                ChatOuterClass.ChatLog.class, ChatOuterClass.ChatLog.Builder.class);
+                                ChatLog.class, Builder.class);
             }
 
             // Construct using proto.ChatOuterClass.ChatLog.newBuilder()
@@ -558,7 +558,7 @@ public final class ChatOuterClass
             }
 
             private Builder(
-                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent)
+                    BuilderParent parent)
             {
                 super(parent);
                 maybeForceBuilderInitialization();
@@ -572,7 +572,7 @@ public final class ChatOuterClass
                 }
             }
 
-            @java.lang.Override
+            @Override
             public Builder clear()
             {
                 super.clear();
@@ -591,23 +591,23 @@ public final class ChatOuterClass
                 return this;
             }
 
-            @java.lang.Override
+            @Override
             public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType()
             {
                 return ChatOuterClass.internal_static_ChatLog_descriptor;
             }
 
-            @java.lang.Override
-            public ChatOuterClass.ChatLog getDefaultInstanceForType()
+            @Override
+            public ChatLog getDefaultInstanceForType()
             {
-                return ChatOuterClass.ChatLog.getDefaultInstance();
+                return ChatLog.getDefaultInstance();
             }
 
-            @java.lang.Override
-            public ChatOuterClass.ChatLog build()
+            @Override
+            public ChatLog build()
             {
-                ChatOuterClass.ChatLog result = buildPartial();
+                ChatLog result = buildPartial();
                 if (!result.isInitialized())
                 {
                     throw newUninitializedMessageException(result);
@@ -615,10 +615,10 @@ public final class ChatOuterClass
                 return result;
             }
 
-            @java.lang.Override
-            public ChatOuterClass.ChatLog buildPartial()
+            @Override
+            public ChatLog buildPartial()
             {
-                ChatOuterClass.ChatLog result = new ChatOuterClass.ChatLog(this);
+                ChatLog result = new ChatLog(this);
                 result.message_ = message_;
                 result.name_ = name_;
                 if (timeBuilder_ == null)
@@ -632,56 +632,56 @@ public final class ChatOuterClass
                 return result;
             }
 
-            @java.lang.Override
+            @Override
             public Builder clone()
             {
                 return (Builder) super.clone();
             }
 
-            @java.lang.Override
+            @Override
             public Builder setField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value)
+                    Object value)
             {
                 return (Builder) super.setField(field, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder clearField(
                     com.google.protobuf.Descriptors.FieldDescriptor field)
             {
                 return (Builder) super.clearField(field);
             }
 
-            @java.lang.Override
+            @Override
             public Builder clearOneof(
                     com.google.protobuf.Descriptors.OneofDescriptor oneof)
             {
                 return (Builder) super.clearOneof(oneof);
             }
 
-            @java.lang.Override
+            @Override
             public Builder setRepeatedField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    int index, java.lang.Object value)
+                    int index, Object value)
             {
                 return (Builder) super.setRepeatedField(field, index, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder addRepeatedField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value)
+                    Object value)
             {
                 return (Builder) super.addRepeatedField(field, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder mergeFrom(com.google.protobuf.Message other)
             {
-                if (other instanceof ChatOuterClass.ChatLog)
+                if (other instanceof ChatLog)
                 {
-                    return mergeFrom((ChatOuterClass.ChatLog) other);
+                    return mergeFrom((ChatLog) other);
                 } else
                 {
                     super.mergeFrom(other);
@@ -689,9 +689,9 @@ public final class ChatOuterClass
                 }
             }
 
-            public Builder mergeFrom(ChatOuterClass.ChatLog other)
+            public Builder mergeFrom(ChatLog other)
             {
-                if (other == ChatOuterClass.ChatLog.getDefaultInstance()) return this;
+                if (other == ChatLog.getDefaultInstance()) return this;
                 if (!other.getMessage().isEmpty())
                 {
                     message_ = other.message_;
@@ -711,25 +711,25 @@ public final class ChatOuterClass
                 return this;
             }
 
-            @java.lang.Override
+            @Override
             public final boolean isInitialized()
             {
                 return true;
             }
 
-            @java.lang.Override
+            @Override
             public Builder mergeFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                     throws java.io.IOException
             {
-                ChatOuterClass.ChatLog parsedMessage = null;
+                ChatLog parsedMessage = null;
                 try
                 {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                 } catch (com.google.protobuf.InvalidProtocolBufferException e)
                 {
-                    parsedMessage = (ChatOuterClass.ChatLog) e.getUnfinishedMessage();
+                    parsedMessage = (ChatLog) e.getUnfinishedMessage();
                     throw e.unwrapIOException();
                 } finally
                 {
@@ -741,24 +741,24 @@ public final class ChatOuterClass
                 return this;
             }
 
-            private java.lang.Object message_ = "";
+            private Object message_ = "";
 
             /**
              * <code>string message = 1;</code>
              */
-            public java.lang.String getMessage()
+            public String getMessage()
             {
-                java.lang.Object ref = message_;
-                if (!(ref instanceof java.lang.String))
+                Object ref = message_;
+                if (!(ref instanceof String))
                 {
                     com.google.protobuf.ByteString bs =
                             (com.google.protobuf.ByteString) ref;
-                    java.lang.String s = bs.toStringUtf8();
+                    String s = bs.toStringUtf8();
                     message_ = s;
                     return s;
                 } else
                 {
-                    return (java.lang.String) ref;
+                    return (String) ref;
                 }
             }
 
@@ -768,12 +768,12 @@ public final class ChatOuterClass
             public com.google.protobuf.ByteString
             getMessageBytes()
             {
-                java.lang.Object ref = message_;
+                Object ref = message_;
                 if (ref instanceof String)
                 {
                     com.google.protobuf.ByteString b =
                             com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                                    (String) ref);
                     message_ = b;
                     return b;
                 } else
@@ -786,7 +786,7 @@ public final class ChatOuterClass
              * <code>string message = 1;</code>
              */
             public Builder setMessage(
-                    java.lang.String value)
+                    String value)
             {
                 if (value == null)
                 {
@@ -826,24 +826,24 @@ public final class ChatOuterClass
                 return this;
             }
 
-            private java.lang.Object name_ = "";
+            private Object name_ = "";
 
             /**
              * <code>string name = 2;</code>
              */
-            public java.lang.String getName()
+            public String getName()
             {
-                java.lang.Object ref = name_;
-                if (!(ref instanceof java.lang.String))
+                Object ref = name_;
+                if (!(ref instanceof String))
                 {
                     com.google.protobuf.ByteString bs =
                             (com.google.protobuf.ByteString) ref;
-                    java.lang.String s = bs.toStringUtf8();
+                    String s = bs.toStringUtf8();
                     name_ = s;
                     return s;
                 } else
                 {
-                    return (java.lang.String) ref;
+                    return (String) ref;
                 }
             }
 
@@ -853,12 +853,12 @@ public final class ChatOuterClass
             public com.google.protobuf.ByteString
             getNameBytes()
             {
-                java.lang.Object ref = name_;
+                Object ref = name_;
                 if (ref instanceof String)
                 {
                     com.google.protobuf.ByteString b =
                             com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                                    (String) ref);
                     name_ = b;
                     return b;
                 } else
@@ -871,7 +871,7 @@ public final class ChatOuterClass
              * <code>string name = 2;</code>
              */
             public Builder setName(
-                    java.lang.String value)
+                    String value)
             {
                 if (value == null)
                 {
@@ -1062,14 +1062,14 @@ public final class ChatOuterClass
                 return timeBuilder_;
             }
 
-            @java.lang.Override
+            @Override
             public final Builder setUnknownFields(
                     final com.google.protobuf.UnknownFieldSet unknownFields)
             {
                 return super.setUnknownFieldsProto3(unknownFields);
             }
 
-            @java.lang.Override
+            @Override
             public final Builder mergeUnknownFields(
                     final com.google.protobuf.UnknownFieldSet unknownFields)
             {
@@ -1081,14 +1081,14 @@ public final class ChatOuterClass
         }
 
         // @@protoc_insertion_point(class_scope:ChatLog)
-        private static final ChatOuterClass.ChatLog DEFAULT_INSTANCE;
+        private static final ChatLog DEFAULT_INSTANCE;
 
         static
         {
-            DEFAULT_INSTANCE = new ChatOuterClass.ChatLog();
+            DEFAULT_INSTANCE = new ChatLog();
         }
 
-        public static ChatOuterClass.ChatLog getDefaultInstance()
+        public static ChatLog getDefaultInstance()
         {
             return DEFAULT_INSTANCE;
         }
@@ -1096,7 +1096,7 @@ public final class ChatOuterClass
         private static final com.google.protobuf.Parser<ChatLog>
                 PARSER = new com.google.protobuf.AbstractParser<ChatLog>()
         {
-            @java.lang.Override
+            @Override
             public ChatLog parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1111,14 +1111,14 @@ public final class ChatOuterClass
             return PARSER;
         }
 
-        @java.lang.Override
+        @Override
         public com.google.protobuf.Parser<ChatLog> getParserForType()
         {
             return PARSER;
         }
 
-        @java.lang.Override
-        public ChatOuterClass.ChatLog getDefaultInstanceForType()
+        @Override
+        public ChatLog getDefaultInstanceForType()
         {
             return DEFAULT_INSTANCE;
         }
@@ -1133,7 +1133,7 @@ public final class ChatOuterClass
         /**
          * <code>string name = 1;</code>
          */
-        java.lang.String getName();
+        String getName();
 
         /**
          * <code>string name = 1;</code>
@@ -1163,7 +1163,7 @@ public final class ChatOuterClass
             name_ = "";
         }
 
-        @java.lang.Override
+        @Override
         public final com.google.protobuf.UnknownFieldSet
         getUnknownFields()
         {
@@ -1178,7 +1178,7 @@ public final class ChatOuterClass
             this();
             if (extensionRegistry == null)
             {
-                throw new java.lang.NullPointerException();
+                throw new NullPointerException();
             }
             int mutable_bitField0_ = 0;
             com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1196,7 +1196,7 @@ public final class ChatOuterClass
                             break;
                         case 10:
                         {
-                            java.lang.String s = input.readStringRequireUtf8();
+                            String s = input.readStringRequireUtf8();
 
                             name_ = s;
                             break;
@@ -1232,32 +1232,32 @@ public final class ChatOuterClass
             return ChatOuterClass.internal_static_User_descriptor;
         }
 
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @Override
+        protected FieldAccessorTable
         internalGetFieldAccessorTable()
         {
             return ChatOuterClass.internal_static_User_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            ChatOuterClass.User.class, ChatOuterClass.User.Builder.class);
+                            User.class, Builder.class);
         }
 
         public static final int NAME_FIELD_NUMBER = 1;
-        private volatile java.lang.Object name_;
+        private volatile Object name_;
 
         /**
          * <code>string name = 1;</code>
          */
-        public java.lang.String getName()
+        public String getName()
         {
-            java.lang.Object ref = name_;
-            if (ref instanceof java.lang.String)
+            Object ref = name_;
+            if (ref instanceof String)
             {
-                return (java.lang.String) ref;
+                return (String) ref;
             } else
             {
                 com.google.protobuf.ByteString bs =
                         (com.google.protobuf.ByteString) ref;
-                java.lang.String s = bs.toStringUtf8();
+                String s = bs.toStringUtf8();
                 name_ = s;
                 return s;
             }
@@ -1269,12 +1269,12 @@ public final class ChatOuterClass
         public com.google.protobuf.ByteString
         getNameBytes()
         {
-            java.lang.Object ref = name_;
-            if (ref instanceof java.lang.String)
+            Object ref = name_;
+            if (ref instanceof String)
             {
                 com.google.protobuf.ByteString b =
                         com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
+                                (String) ref);
                 name_ = b;
                 return b;
             } else
@@ -1285,7 +1285,7 @@ public final class ChatOuterClass
 
         private byte memoizedIsInitialized = -1;
 
-        @java.lang.Override
+        @Override
         public final boolean isInitialized()
         {
             byte isInitialized = memoizedIsInitialized;
@@ -1296,7 +1296,7 @@ public final class ChatOuterClass
             return true;
         }
 
-        @java.lang.Override
+        @Override
         public void writeTo(com.google.protobuf.CodedOutputStream output)
                 throws java.io.IOException
         {
@@ -1307,7 +1307,7 @@ public final class ChatOuterClass
             unknownFields.writeTo(output);
         }
 
-        @java.lang.Override
+        @Override
         public int getSerializedSize()
         {
             int size = memoizedSize;
@@ -1323,18 +1323,18 @@ public final class ChatOuterClass
             return size;
         }
 
-        @java.lang.Override
-        public boolean equals(final java.lang.Object obj)
+        @Override
+        public boolean equals(final Object obj)
         {
             if (obj == this)
             {
                 return true;
             }
-            if (!(obj instanceof ChatOuterClass.User))
+            if (!(obj instanceof User))
             {
                 return super.equals(obj);
             }
-            ChatOuterClass.User other = (ChatOuterClass.User) obj;
+            User other = (User) obj;
 
             boolean result = true;
             result = result && getName()
@@ -1343,7 +1343,7 @@ public final class ChatOuterClass
             return result;
         }
 
-        @java.lang.Override
+        @Override
         public int hashCode()
         {
             if (memoizedHashCode != 0)
@@ -1359,14 +1359,14 @@ public final class ChatOuterClass
             return hash;
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 java.nio.ByteBuffer data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 java.nio.ByteBuffer data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -1374,14 +1374,14 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 com.google.protobuf.ByteString data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 com.google.protobuf.ByteString data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -1389,13 +1389,13 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.User parseFrom(byte[] data)
+        public static User parseFrom(byte[] data)
                 throws com.google.protobuf.InvalidProtocolBufferException
         {
             return PARSER.parseFrom(data);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 byte[] data,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException
@@ -1403,14 +1403,14 @@ public final class ChatOuterClass
             return PARSER.parseFrom(data, extensionRegistry);
         }
 
-        public static ChatOuterClass.User parseFrom(java.io.InputStream input)
+        public static User parseFrom(java.io.InputStream input)
                 throws java.io.IOException
         {
             return com.google.protobuf.GeneratedMessageV3
                     .parseWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -1419,14 +1419,14 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static ChatOuterClass.User parseDelimitedFrom(java.io.InputStream input)
+        public static User parseDelimitedFrom(java.io.InputStream input)
                 throws java.io.IOException
         {
             return com.google.protobuf.GeneratedMessageV3
                     .parseDelimitedWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.User parseDelimitedFrom(
+        public static User parseDelimitedFrom(
                 java.io.InputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -1435,7 +1435,7 @@ public final class ChatOuterClass
                     .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 com.google.protobuf.CodedInputStream input)
                 throws java.io.IOException
         {
@@ -1443,7 +1443,7 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input);
         }
 
-        public static ChatOuterClass.User parseFrom(
+        public static User parseFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException
@@ -1452,7 +1452,7 @@ public final class ChatOuterClass
                     .parseWithIOException(PARSER, input, extensionRegistry);
         }
 
-        @java.lang.Override
+        @Override
         public Builder newBuilderForType()
         {
             return newBuilder();
@@ -1463,21 +1463,21 @@ public final class ChatOuterClass
             return DEFAULT_INSTANCE.toBuilder();
         }
 
-        public static Builder newBuilder(ChatOuterClass.User prototype)
+        public static Builder newBuilder(User prototype)
         {
             return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
         }
 
-        @java.lang.Override
+        @Override
         public Builder toBuilder()
         {
             return this == DEFAULT_INSTANCE
                     ? new Builder() : new Builder().mergeFrom(this);
         }
 
-        @java.lang.Override
+        @Override
         protected Builder newBuilderForType(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent)
+                BuilderParent parent)
         {
             Builder builder = new Builder(parent);
             return builder;
@@ -1489,7 +1489,7 @@ public final class ChatOuterClass
         public static final class Builder extends
                 com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
                 // @@protoc_insertion_point(builder_implements:User)
-                ChatOuterClass.UserOrBuilder
+                UserOrBuilder
         {
             public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor()
@@ -1497,13 +1497,13 @@ public final class ChatOuterClass
                 return ChatOuterClass.internal_static_User_descriptor;
             }
 
-            @java.lang.Override
-            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            @Override
+            protected FieldAccessorTable
             internalGetFieldAccessorTable()
             {
                 return ChatOuterClass.internal_static_User_fieldAccessorTable
                         .ensureFieldAccessorsInitialized(
-                                ChatOuterClass.User.class, ChatOuterClass.User.Builder.class);
+                                User.class, Builder.class);
             }
 
             // Construct using proto.ChatOuterClass.User.newBuilder()
@@ -1513,7 +1513,7 @@ public final class ChatOuterClass
             }
 
             private Builder(
-                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent)
+                    BuilderParent parent)
             {
                 super(parent);
                 maybeForceBuilderInitialization();
@@ -1527,7 +1527,7 @@ public final class ChatOuterClass
                 }
             }
 
-            @java.lang.Override
+            @Override
             public Builder clear()
             {
                 super.clear();
@@ -1536,23 +1536,23 @@ public final class ChatOuterClass
                 return this;
             }
 
-            @java.lang.Override
+            @Override
             public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType()
             {
                 return ChatOuterClass.internal_static_User_descriptor;
             }
 
-            @java.lang.Override
-            public ChatOuterClass.User getDefaultInstanceForType()
+            @Override
+            public User getDefaultInstanceForType()
             {
-                return ChatOuterClass.User.getDefaultInstance();
+                return User.getDefaultInstance();
             }
 
-            @java.lang.Override
-            public ChatOuterClass.User build()
+            @Override
+            public User build()
             {
-                ChatOuterClass.User result = buildPartial();
+                User result = buildPartial();
                 if (!result.isInitialized())
                 {
                     throw newUninitializedMessageException(result);
@@ -1560,65 +1560,65 @@ public final class ChatOuterClass
                 return result;
             }
 
-            @java.lang.Override
-            public ChatOuterClass.User buildPartial()
+            @Override
+            public User buildPartial()
             {
-                ChatOuterClass.User result = new ChatOuterClass.User(this);
+                User result = new User(this);
                 result.name_ = name_;
                 onBuilt();
                 return result;
             }
 
-            @java.lang.Override
+            @Override
             public Builder clone()
             {
                 return (Builder) super.clone();
             }
 
-            @java.lang.Override
+            @Override
             public Builder setField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value)
+                    Object value)
             {
                 return (Builder) super.setField(field, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder clearField(
                     com.google.protobuf.Descriptors.FieldDescriptor field)
             {
                 return (Builder) super.clearField(field);
             }
 
-            @java.lang.Override
+            @Override
             public Builder clearOneof(
                     com.google.protobuf.Descriptors.OneofDescriptor oneof)
             {
                 return (Builder) super.clearOneof(oneof);
             }
 
-            @java.lang.Override
+            @Override
             public Builder setRepeatedField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    int index, java.lang.Object value)
+                    int index, Object value)
             {
                 return (Builder) super.setRepeatedField(field, index, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder addRepeatedField(
                     com.google.protobuf.Descriptors.FieldDescriptor field,
-                    java.lang.Object value)
+                    Object value)
             {
                 return (Builder) super.addRepeatedField(field, value);
             }
 
-            @java.lang.Override
+            @Override
             public Builder mergeFrom(com.google.protobuf.Message other)
             {
-                if (other instanceof ChatOuterClass.User)
+                if (other instanceof User)
                 {
-                    return mergeFrom((ChatOuterClass.User) other);
+                    return mergeFrom((User) other);
                 } else
                 {
                     super.mergeFrom(other);
@@ -1626,9 +1626,9 @@ public final class ChatOuterClass
                 }
             }
 
-            public Builder mergeFrom(ChatOuterClass.User other)
+            public Builder mergeFrom(User other)
             {
-                if (other == ChatOuterClass.User.getDefaultInstance()) return this;
+                if (other == User.getDefaultInstance()) return this;
                 if (!other.getName().isEmpty())
                 {
                     name_ = other.name_;
@@ -1639,25 +1639,25 @@ public final class ChatOuterClass
                 return this;
             }
 
-            @java.lang.Override
+            @Override
             public final boolean isInitialized()
             {
                 return true;
             }
 
-            @java.lang.Override
+            @Override
             public Builder mergeFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                     throws java.io.IOException
             {
-                ChatOuterClass.User parsedMessage = null;
+                User parsedMessage = null;
                 try
                 {
                     parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
                 } catch (com.google.protobuf.InvalidProtocolBufferException e)
                 {
-                    parsedMessage = (ChatOuterClass.User) e.getUnfinishedMessage();
+                    parsedMessage = (User) e.getUnfinishedMessage();
                     throw e.unwrapIOException();
                 } finally
                 {
@@ -1669,24 +1669,24 @@ public final class ChatOuterClass
                 return this;
             }
 
-            private java.lang.Object name_ = "";
+            private Object name_ = "";
 
             /**
              * <code>string name = 1;</code>
              */
-            public java.lang.String getName()
+            public String getName()
             {
-                java.lang.Object ref = name_;
-                if (!(ref instanceof java.lang.String))
+                Object ref = name_;
+                if (!(ref instanceof String))
                 {
                     com.google.protobuf.ByteString bs =
                             (com.google.protobuf.ByteString) ref;
-                    java.lang.String s = bs.toStringUtf8();
+                    String s = bs.toStringUtf8();
                     name_ = s;
                     return s;
                 } else
                 {
-                    return (java.lang.String) ref;
+                    return (String) ref;
                 }
             }
 
@@ -1696,12 +1696,12 @@ public final class ChatOuterClass
             public com.google.protobuf.ByteString
             getNameBytes()
             {
-                java.lang.Object ref = name_;
+                Object ref = name_;
                 if (ref instanceof String)
                 {
                     com.google.protobuf.ByteString b =
                             com.google.protobuf.ByteString.copyFromUtf8(
-                                    (java.lang.String) ref);
+                                    (String) ref);
                     name_ = b;
                     return b;
                 } else
@@ -1756,14 +1756,14 @@ public final class ChatOuterClass
                 return this;
             }
 
-            @java.lang.Override
+            @Override
             public final Builder setUnknownFields(
                     final com.google.protobuf.UnknownFieldSet unknownFields)
             {
                 return super.setUnknownFieldsProto3(unknownFields);
             }
 
-            @java.lang.Override
+            @Override
             public final Builder mergeUnknownFields(
                     final com.google.protobuf.UnknownFieldSet unknownFields)
             {
@@ -1775,14 +1775,14 @@ public final class ChatOuterClass
         }
 
         // @@protoc_insertion_point(class_scope:User)
-        private static final ChatOuterClass.User DEFAULT_INSTANCE;
+        private static final User DEFAULT_INSTANCE;
 
         static
         {
-            DEFAULT_INSTANCE = new ChatOuterClass.User();
+            DEFAULT_INSTANCE = new User();
         }
 
-        public static ChatOuterClass.User getDefaultInstance()
+        public static User getDefaultInstance()
         {
             return DEFAULT_INSTANCE;
         }
@@ -1790,7 +1790,7 @@ public final class ChatOuterClass
         private static final com.google.protobuf.Parser<User>
                 PARSER = new com.google.protobuf.AbstractParser<User>()
         {
-            @java.lang.Override
+            @Override
             public User parsePartialFrom(
                     com.google.protobuf.CodedInputStream input,
                     com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1805,14 +1805,14 @@ public final class ChatOuterClass
             return PARSER;
         }
 
-        @java.lang.Override
+        @Override
         public com.google.protobuf.Parser<User> getParserForType()
         {
             return PARSER;
         }
 
-        @java.lang.Override
-        public ChatOuterClass.User getDefaultInstanceForType()
+        @Override
+        public User getDefaultInstanceForType()
         {
             return DEFAULT_INSTANCE;
         }
@@ -1841,7 +1841,7 @@ public final class ChatOuterClass
 
     static
     {
-        java.lang.String[] descriptorData = {
+        String[] descriptorData = {
                 "\n\nchat.proto\032\033google/protobuf/empty.prot" +
                         "o\032\037google/protobuf/timestamp.proto\"R\n\007Ch" +
                         "atLog\022\017\n\007message\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022(\n\004" +
@@ -1873,13 +1873,13 @@ public final class ChatOuterClass
         internal_static_ChatLog_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_ChatLog_descriptor,
-                new java.lang.String[]{"Message", "Name", "Time",});
+                new String[]{"Message", "Name", "Time",});
         internal_static_User_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_User_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_User_descriptor,
-                new java.lang.String[]{"Name",});
+                new String[]{"Name",});
         com.google.protobuf.EmptyProto.getDescriptor();
         com.google.protobuf.TimestampProto.getDescriptor();
     }

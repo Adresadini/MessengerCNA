@@ -4,18 +4,16 @@ import io.grpc.stub.StreamObserver;
 import proto.ChatGrpc;
 import proto.ChatOuterClass;
 import com.google.protobuf.Empty;
+
+import java.time.Instant;
 import java.util.Scanner;
+
+import com.google.protobuf.Timestamp;
 
 public class Main
 {
+    public static Scanner sc = new Scanner(System.in);
 
-    public static void displayOptions()
-    {
-        System.out.println("1) Login");
-        System.out.println("2) Write a message");
-        System.out.println("3) Refresh to see if you have any messages");
-        System.out.println("0) Exit");
-    }
 
     public static void main(String[] args)
     {
@@ -24,33 +22,21 @@ public class Main
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
 
-        displayOptions();
-
-        int option = -1;
-        while (option != 0)
+        Thread t = new Thread()
         {
-
-            System.out.print("Choose an option: ");
-            Scanner sc = new Scanner(System.in);
-            option = sc.nextInt();
-
-            switch (option)
+            public void run()
             {
-                case 1:
-                    Scanner read = new Scanner(System.in);
-                    System.out.print("Select a name: ");
-                    String nume = read.nextLine();
-                    System.out.print("Introduceti CNP: ");
-                    String CNP = read.nextLine();
-
-                    chatStub.logIn(
-                            ChatOuterClass.User.newBuilder().setName(nume),
-                            new StreamObserver<Empty>()
+                while (true)
+                {
+                    chatStub.subscribe(
+                            Empty.newBuilder().build(),
+                            new StreamObserver<ChatOuterClass.ChatLog>()
                             {
                                 @Override
-                                public void onNext(Empty empty)
+                                public void onNext(ChatOuterClass.ChatLog chatLog)
                                 {
-                                    System.out.println("You have successfully logged in!");
+                                    if (chatLog.getMessage() != null)
+                                        System.out.println(chatLog.getName() + ": " + chatLog.getMessage());
                                 }
 
                                 @Override
@@ -66,8 +52,72 @@ public class Main
                                 }
                             }
                     );
-                    break;
+                }
             }
-        }
+        };
+        t.start();
+
+
+        System.out.print("Select a name: ");
+        String name = sc.nextLine();
+        chatStub.logIn(
+                ChatOuterClass.User.newBuilder().setName(name).build(),
+                new StreamObserver<Empty>()
+                {
+                    @Override
+                    public void onNext(Empty empty)
+                    {
+                        System.out.println("You have successfully logged in!");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable)
+                    {
+                        System.out.println("Error: " + throwable.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted()
+                    {
+
+                    }
+                }
+        );
+
+        System.out.print("Message: ");
+        String message = sc.nextLine();
+
+
+        Instant time = Instant.now();
+        Timestamp currentTime = Timestamp.newBuilder().setSeconds(time.getEpochSecond())
+                .setNanos(time.getNano()).build();
+
+
+        chatStub.write(
+                ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).build(),
+                new StreamObserver<Empty>()
+                {
+                    @Override
+                    public void onNext(Empty empty)
+                    {
+                        System.out.println("You have successfully logged in!");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable)
+                    {
+                        System.out.println("Error: " + throwable.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted()
+                    {
+
+                    }
+                }
+        );
+
+
+        channel.shutdown();
     }
 }
