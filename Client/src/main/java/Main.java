@@ -10,113 +10,107 @@ import java.util.Scanner;
 
 import com.google.protobuf.Timestamp;
 
-public class Main
-{
+public class Main {
     public static Scanner sc = new Scanner(System.in);
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress
                 ("localhost", 8999).usePlaintext().build();
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
 
-        Thread t = new Thread()
-        {
-            public void run()
-            {
-                while (true)
-                {
+        boolean isOpen = true;
+        Thread t = new Thread() {
+            public void run() {
+                final String[] currentMessage = {""};
+                while (isOpen) {
                     chatStub.subscribe(
                             Empty.newBuilder().build(),
-                            new StreamObserver<ChatOuterClass.ChatLog>()
-                            {
+                            new StreamObserver<ChatOuterClass.ChatLog>() {
                                 @Override
-                                public void onNext(ChatOuterClass.ChatLog chatLog)
-                                {
-                                    if (chatLog.getMessage() != null)
-                                        System.out.println(chatLog.getName() + ": " + chatLog.getMessage());
+                                public void onNext(ChatOuterClass.ChatLog chatLog) {
+                                    if (!chatLog.getMessage().equals(currentMessage[0])) {
+                                        currentMessage[0] = chatLog.getMessage();
+                                        if (!chatLog.getMessage().isEmpty())
+                                            System.out.println(chatLog.getName() + ": " + chatLog.getMessage());
+                                    }
+
                                 }
 
                                 @Override
-                                public void onError(Throwable throwable)
-                                {
+                                public void onError(Throwable throwable) {
                                     System.out.println("Error: " + throwable.getMessage());
                                 }
 
                                 @Override
-                                public void onCompleted()
-                                {
+                                public void onCompleted() {
+
                                 }
                             }
                     );
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };
         t.start();
 
-
-        System.out.print("Select a name: ");
+        System.out.print("What is your name: ");
         String name = sc.nextLine();
         chatStub.logIn(
                 ChatOuterClass.User.newBuilder().setName(name).build(),
-                new StreamObserver<Empty>()
-                {
+                new StreamObserver<Empty>() {
                     @Override
-                    public void onNext(Empty empty)
-                    {
+                    public void onNext(Empty empty) {
                         System.out.println("You have successfully logged in!");
                     }
 
                     @Override
-                    public void onError(Throwable throwable)
-                    {
+                    public void onError(Throwable throwable) {
                         System.out.println("Error: " + throwable.getMessage());
                     }
 
                     @Override
-                    public void onCompleted()
-                    {
+                    public void onCompleted() {
 
                     }
                 }
         );
+        while (isOpen) {
 
-        System.out.print("Message: ");
-        String message = sc.nextLine();
-
-
-        Instant time = Instant.now();
-        Timestamp currentTime = Timestamp.newBuilder().setSeconds(time.getEpochSecond())
-                .setNanos(time.getNano()).build();
+            String message = sc.nextLine();
 
 
-        chatStub.write(
-                ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).build(),
-                new StreamObserver<Empty>()
-                {
-                    @Override
-                    public void onNext(Empty empty)
-                    {
-                        System.out.println("You have successfully logged in!");
+            Instant time = Instant.now();
+            Timestamp currentTime = Timestamp.newBuilder().setSeconds(time.getEpochSecond())
+                    .setNanos(time.getNano()).build();
+
+
+            chatStub.write(
+                    ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).build(),
+                    new StreamObserver<Empty>() {
+                        @Override
+                        public void onNext(Empty empty) {
+                            System.out.println("Message sent");
+                        }
+
+                        @Override
+                        public void onError(Throwable throwable) {
+                            System.out.println("Error: " + throwable.getMessage());
+                        }
+
+                        @Override
+                        public void onCompleted() {
+
+                        }
                     }
+            );
 
-                    @Override
-                    public void onError(Throwable throwable)
-                    {
-                        System.out.println("Error: " + throwable.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted()
-                    {
-
-                    }
-                }
-        );
-
-
+        }
         channel.shutdown();
     }
 }
