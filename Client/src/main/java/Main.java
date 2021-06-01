@@ -8,6 +8,9 @@ import com.google.protobuf.Empty;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -25,12 +28,13 @@ public class Main {
     }
 
 
-
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress
                 ("localhost", 8999).usePlaintext().build();
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
 
         System.out.print("What is your name: ");
         String name = sc.nextLine();
@@ -44,7 +48,7 @@ public class Main {
                         try {
                             String filename = "log.txt";
                             FileWriter fw = new FileWriter(filename, true);
-                            fw.write("\"" + name + "\"" + " successfully logged in!\n");
+                            fw.write("[" + formatter.format(Instant.now()) + "] \"" + name + "\"" + " successfully logged in!\n");
                             fw.close();
                         } catch (IOException ioe) {
                             System.err.println("IOException: " + ioe.getMessage());
@@ -77,8 +81,8 @@ public class Main {
                                     if (!chatLog.getMessage().equals(currentMessage[0])) {
                                         currentMessage[0] = chatLog.getMessage();
                                         if (!chatLog.getMessage().isEmpty())
-                                            System.out.println(chatLog.getName() + ": " +
-                                                    chatLog.getMessage());
+                                            System.out.println("[" + formatter.format(Instant.ofEpochSecond(chatLog.getTime().getSeconds(), chatLog.getTime().getNanos()))
+                                                    + "] " + chatLog.getName() + ": " + chatLog.getMessage());
                                     }
 
                                 }
@@ -124,7 +128,8 @@ public class Main {
                                         try {
                                             String filename = "log.txt";
                                             FileWriter fw = new FileWriter(filename, true);
-                                            fw.write("\"" + name + "\"" + " successfully logged out!\n");
+                                            fw.write("[" + formatter.format(Instant.ofEpochSecond(currentTime.getSeconds(), currentTime.getNanos()))
+                                                    + "] \"" + name + "\"" + " successfully logged out!\n");
                                             fw.close();
                                         } catch (IOException ioe) {
                                             System.err.println("IOException: " + ioe.getMessage());
@@ -142,8 +147,8 @@ public class Main {
                                     }
                                 }
                         );
-                        channel.shutdown();
                         pauseFor(10);
+                        channel.shutdown();
                         System.exit(0);
                 }
 
@@ -157,7 +162,8 @@ public class Main {
                             try {
                                 String filename = "log.txt";
                                 FileWriter fw = new FileWriter(filename, true);
-                                fw.write("\"" + name + "\" sent the message: " + "\"" + message + "\"" + "\n");
+                                fw.write("[" + formatter.format(Instant.ofEpochSecond(currentTime.getSeconds(), currentTime.getNanos()))
+                                        + "] \"" + name + "\" sent the message: " + "\"" + message + "\"" + "\n");
                                 fw.close();
                             } catch (IOException ioe) {
                                 System.err.println("IOException: " + ioe.getMessage());
