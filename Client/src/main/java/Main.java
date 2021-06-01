@@ -34,7 +34,7 @@ public class Main {
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("UTC"));
 
         System.out.print("What is your name: ");
         String name = sc.nextLine();
@@ -45,14 +45,6 @@ public class Main {
                     @Override
                     public void onNext(Empty empty) {
                         System.out.println("You have successfully logged in!");
-                        try {
-                            String filename = "log.txt";
-                            FileWriter fw = new FileWriter(filename, true);
-                            fw.write("[" + formatter.format(Instant.now()) + "] \"" + name + "\"" + " successfully logged in!\n");
-                            fw.close();
-                        } catch (IOException ioe) {
-                            System.err.println("IOException: " + ioe.getMessage());
-                        }
                     }
 
                     @Override
@@ -125,15 +117,6 @@ public class Main {
                                     @Override
                                     public void onNext(Empty empty) {
                                         System.out.println("You have successfully logged out!");
-                                        try {
-                                            String filename = "log.txt";
-                                            FileWriter fw = new FileWriter(filename, true);
-                                            fw.write("[" + formatter.format(Instant.ofEpochSecond(currentTime.getSeconds(), currentTime.getNanos()))
-                                                    + "] \"" + name + "\"" + " successfully logged out!\n");
-                                            fw.close();
-                                        } catch (IOException ioe) {
-                                            System.err.println("IOException: " + ioe.getMessage());
-                                        }
                                     }
 
                                     @Override
@@ -157,17 +140,7 @@ public class Main {
                     new StreamObserver<Empty>() {
                         @Override
                         public void onNext(Empty empty) {
-
-                            System.out.println("Message sent");
-                            try {
-                                String filename = "log.txt";
-                                FileWriter fw = new FileWriter(filename, true);
-                                fw.write("[" + formatter.format(Instant.ofEpochSecond(currentTime.getSeconds(), currentTime.getNanos()))
-                                        + "] \"" + name + "\" sent the message: " + "\"" + message + "\"" + "\n");
-                                fw.close();
-                            } catch (IOException ioe) {
-                                System.err.println("IOException: " + ioe.getMessage());
-                            }
+                            System.out.println("Message sent!");
                         }
 
                         @Override
