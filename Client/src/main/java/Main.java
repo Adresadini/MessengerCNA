@@ -133,6 +133,30 @@ public class Main {
                         pauseFor(10);
                         channel.shutdown();
                         System.exit(0);
+                    case "online":
+                        System.out.println("List of online users: ");
+                        chatStub.online(
+                            Empty.newBuilder().build(),
+                            new StreamObserver<ChatOuterClass.User>() {
+                                @Override
+                                public void onNext(ChatOuterClass.User user) {
+                                    System.out.println(user.getName());
+                                }
+
+                                @Override
+                                public void onError(Throwable throwable) {
+                                    System.out.println("Error: " + throwable.getMessage());
+                                }
+
+                                @Override
+                                public void onCompleted() {
+
+                                }
+                            }
+                    );
+
+                    default:
+                        System.out.println("Invalid Command!");
                 }
 
             chatStub.write(

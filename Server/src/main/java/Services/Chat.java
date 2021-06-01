@@ -78,6 +78,10 @@ public class Chat extends ChatGrpc.ChatImplBase {
 
     @Override
     public void online(Empty request, StreamObserver<ChatOuterClass.User> responseObserver) {
+        if(onlineUsers.size() == 1){
+            Status status = Status.NOT_FOUND.withDescription("There are no other users online");
+            responseObserver.onError(status.asRuntimeException());
+        }
         onlineUsers.forEach(user -> responseObserver.onNext(ChatOuterClass.User.newBuilder().setName(user).build()));
         responseObserver.onCompleted();
     }
