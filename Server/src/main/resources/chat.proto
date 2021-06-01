@@ -6,7 +6,7 @@ option java_package = "proto";
 
 service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}
-  rpc Subscribe(User) returns (ChatLog) {}
+  rpc Subscribe(google.protobuf.Empty) returns (ChatLog) {}
   rpc LogIn(User) returns (google.protobuf.Empty) {}
   rpc LogOut(User) returns (google.protobuf.Empty) {}
   rpc Online(google.protobuf.Empty) returns (stream User){}

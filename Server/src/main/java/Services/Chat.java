@@ -34,11 +34,10 @@ public class Chat extends ChatGrpc.ChatImplBase {
     public void write(ChatOuterClass.ChatLog request, StreamObserver<Empty> responseObserver) {
         currentMessage = ChatOuterClass.ChatLog.newBuilder().setMessage(request.getMessage()).setTime(request.getTime()).setName(request.getName()).setRecipient(request.getRecipient()).build();
 
-        if (request.getRecipient() != "" && onlineUsers.contains(request.getRecipient())){
+        if (request.getRecipient() != "" && onlineUsers.contains(request.getRecipient())) {
             logMessage("[" + formatter.format(Instant.ofEpochSecond(request.getTime().getSeconds(), request.getTime().getNanos()))
                     + "] \"" + request.getName() + "\" whispered to " + request.getRecipient() + ": " + "\"" + request.getMessage() + "\"" + "\n");
-        }
-        else{
+        } else {
             logMessage("[" + formatter.format(Instant.ofEpochSecond(request.getTime().getSeconds(), request.getTime().getNanos()))
                     + "] \"" + request.getName() + "\" typed: " + "\"" + request.getMessage() + "\"" + "\n");
         }
@@ -48,11 +47,9 @@ public class Chat extends ChatGrpc.ChatImplBase {
     }
 
     @Override
-    public void subscribe(ChatOuterClass.User request, StreamObserver<ChatOuterClass.ChatLog> responseObserver) {
-        if(currentMessage.getRecipient() == "" || currentMessage.getRecipient() == request.getName()){
-            ChatOuterClass.ChatLog.Builder response = ChatOuterClass.ChatLog.newBuilder().setName(currentMessage.getName()).setMessage(currentMessage.getMessage()).setTime(currentMessage.getTime());
-            responseObserver.onNext(response.build());
-        }
+    public void subscribe(Empty request, StreamObserver<ChatOuterClass.ChatLog> responseObserver) {
+        ChatOuterClass.ChatLog.Builder response = ChatOuterClass.ChatLog.newBuilder().setName(currentMessage.getName()).setMessage(currentMessage.getMessage()).setTime(currentMessage.getTime()).setRecipient(currentMessage.getRecipient());
+        responseObserver.onNext(response.build());
         responseObserver.onCompleted();
     }
 
@@ -61,7 +58,7 @@ public class Chat extends ChatGrpc.ChatImplBase {
         System.out.println("[" + formatter.format(Instant.now()) + "] \"" + request.getName() + "\" logged in");
         logMessage("[" + formatter.format(Instant.now()) + "] \"" + request.getName() + "\" logged in\n");
 
-        if(onlineUsers.contains(request.getName())) {
+        if (onlineUsers.contains(request.getName())) {
             Status status = Status.INVALID_ARGUMENT.withDescription("Username already taken! Choose another one.");
             responseObserver.onError(status.asRuntimeException());
         }
@@ -84,7 +81,7 @@ public class Chat extends ChatGrpc.ChatImplBase {
 
     @Override
     public void online(Empty request, StreamObserver<ChatOuterClass.User> responseObserver) {
-        if(onlineUsers.size() == 1){
+        if (onlineUsers.size() == 1) {
             Status status = Status.NOT_FOUND.withDescription("There are no other users online");
             responseObserver.onError(status.asRuntimeException());
         }

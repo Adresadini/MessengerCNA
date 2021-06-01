@@ -59,28 +59,28 @@ public final class ChatGrpc {
      return getWriteMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<proto.ChatOuterClass.User,
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       proto.ChatOuterClass.ChatLog> getSubscribeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Subscribe",
-      requestType = proto.ChatOuterClass.User.class,
+      requestType = com.google.protobuf.Empty.class,
       responseType = proto.ChatOuterClass.ChatLog.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<proto.ChatOuterClass.User,
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       proto.ChatOuterClass.ChatLog> getSubscribeMethod() {
-    io.grpc.MethodDescriptor<proto.ChatOuterClass.User, proto.ChatOuterClass.ChatLog> getSubscribeMethod;
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, proto.ChatOuterClass.ChatLog> getSubscribeMethod;
     if ((getSubscribeMethod = ChatGrpc.getSubscribeMethod) == null) {
       synchronized (ChatGrpc.class) {
         if ((getSubscribeMethod = ChatGrpc.getSubscribeMethod) == null) {
           ChatGrpc.getSubscribeMethod = getSubscribeMethod = 
-              io.grpc.MethodDescriptor.<proto.ChatOuterClass.User, proto.ChatOuterClass.ChatLog>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, proto.ChatOuterClass.ChatLog>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Chat", "Subscribe"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proto.ChatOuterClass.User.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proto.ChatOuterClass.ChatLog.getDefaultInstance()))
                   .setSchemaDescriptor(new ChatMethodDescriptorSupplier("Subscribe"))
@@ -223,7 +223,7 @@ public final class ChatGrpc {
 
     /**
      */
-    public void subscribe(proto.ChatOuterClass.User request,
+    public void subscribe(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<proto.ChatOuterClass.ChatLog> responseObserver) {
       asyncUnimplementedUnaryCall(getSubscribeMethod(), responseObserver);
     }
@@ -262,7 +262,7 @@ public final class ChatGrpc {
             getSubscribeMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                proto.ChatOuterClass.User,
+                com.google.protobuf.Empty,
                 proto.ChatOuterClass.ChatLog>(
                   this, METHODID_SUBSCRIBE)))
           .addMethod(
@@ -318,7 +318,7 @@ public final class ChatGrpc {
 
     /**
      */
-    public void subscribe(proto.ChatOuterClass.User request,
+    public void subscribe(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<proto.ChatOuterClass.ChatLog> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSubscribeMethod(), getCallOptions()), request, responseObserver);
@@ -376,7 +376,7 @@ public final class ChatGrpc {
 
     /**
      */
-    public proto.ChatOuterClass.ChatLog subscribe(proto.ChatOuterClass.User request) {
+    public proto.ChatOuterClass.ChatLog subscribe(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getSubscribeMethod(), getCallOptions(), request);
     }
@@ -433,7 +433,7 @@ public final class ChatGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<proto.ChatOuterClass.ChatLog> subscribe(
-        proto.ChatOuterClass.User request) {
+        com.google.protobuf.Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getSubscribeMethod(), getCallOptions()), request);
     }
@@ -483,7 +483,7 @@ public final class ChatGrpc {
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_SUBSCRIBE:
-          serviceImpl.subscribe((proto.ChatOuterClass.User) request,
+          serviceImpl.subscribe((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<proto.ChatOuterClass.ChatLog>) responseObserver);
           break;
         case METHODID_LOG_IN:

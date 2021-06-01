@@ -72,9 +72,14 @@ public class Main {
                                 public void onNext(ChatOuterClass.ChatLog chatLog) {
                                     if (!chatLog.getMessage().equals(currentMessage[0])) {
                                         currentMessage[0] = chatLog.getMessage();
-                                        if (!chatLog.getMessage().isEmpty())
-                                            System.out.println("[" + formatter.format(Instant.ofEpochSecond(chatLog.getTime().getSeconds(), chatLog.getTime().getNanos()))
-                                                    + "] " + chatLog.getName() + ": " + chatLog.getMessage());
+                                        if (!chatLog.getMessage().isEmpty()) {
+                                            if (chatLog.getRecipient().equals(name) || chatLog.getName().equals(name))
+                                                System.out.println("[" + formatter.format(Instant.ofEpochSecond(chatLog.getTime().getSeconds(), chatLog.getTime().getNanos()))
+                                                        + "] " + chatLog.getName() + " -> " + chatLog.getRecipient() + ": " + chatLog.getMessage());
+                                            else if(chatLog.getRecipient().equals(""))
+                                                System.out.println("[" + formatter.format(Instant.ofEpochSecond(chatLog.getTime().getSeconds(), chatLog.getTime().getNanos()))
+                                                        + "] " + chatLog.getName() + ": " + chatLog.getMessage());
+                                        }
                                     }
 
                                 }
@@ -136,28 +141,28 @@ public class Main {
                     case "online":
                         System.out.println("[List of online users]");
                         chatStub.online(
-                            Empty.newBuilder().build(),
-                            new StreamObserver<ChatOuterClass.User>() {
-                                @Override
-                                public void onNext(ChatOuterClass.User user) {
-                                    System.out.println(user.getName());
-                                }
+                                Empty.newBuilder().build(),
+                                new StreamObserver<ChatOuterClass.User>() {
+                                    @Override
+                                    public void onNext(ChatOuterClass.User user) {
+                                        System.out.println(user.getName());
+                                    }
 
-                                @Override
-                                public void onError(Throwable throwable) {
-                                    System.out.println("Error: " + throwable.getMessage());
-                                }
+                                    @Override
+                                    public void onError(Throwable throwable) {
+                                        System.out.println("Error: " + throwable.getMessage());
+                                    }
 
-                                @Override
-                                public void onCompleted() {
+                                    @Override
+                                    public void onCompleted() {
 
+                                    }
                                 }
-                            }
-                    );
+                        );
                         break;
                     case "whisper":
-                        String[] command = message.split(" ",3);
-                        try{
+                        String[] command = message.split(" ", 3);
+                        try {
                             chatStub.write(
                                     ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(command[2]).setTime(currentTime).setRecipient(command[1]).build(),
                                     new StreamObserver<Empty>() {
@@ -177,16 +182,14 @@ public class Main {
                                         }
                                     }
                             );
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
                             System.out.println("Invalid command!");
                         }
                         break;
                     default:
                         System.out.println("Invalid Command!");
                 }
-            else
-            {
+            else {
                 chatStub.write(
                         ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).setRecipient("").build(),
                         new StreamObserver<Empty>() {
