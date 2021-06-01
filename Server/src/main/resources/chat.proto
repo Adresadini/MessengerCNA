@@ -5,6 +5,7 @@ service Chat {
   rpc Write(ChatLog) returns (google.protobuf.Empty) {}
   rpc Subscribe(google.protobuf.Empty) returns (ChatLog) {}
   rpc LogIn(User) returns (google.protobuf.Empty) {}
+  rpc LogOut(User) returns (google.protobuf.Empty) {}
 }
 
 message ChatLog{

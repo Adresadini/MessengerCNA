@@ -2,7 +2,6 @@ package proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
@@ -116,6 +115,38 @@ public final class ChatGrpc {
      return getLogInMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ChatOuterClass.User,
+      com.google.protobuf.Empty> getLogOutMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "LogOut",
+      requestType = ChatOuterClass.User.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ChatOuterClass.User,
+      com.google.protobuf.Empty> getLogOutMethod() {
+    io.grpc.MethodDescriptor<ChatOuterClass.User, com.google.protobuf.Empty> getLogOutMethod;
+    if ((getLogOutMethod = ChatGrpc.getLogOutMethod) == null) {
+      synchronized (ChatGrpc.class) {
+        if ((getLogOutMethod = ChatGrpc.getLogOutMethod) == null) {
+          ChatGrpc.getLogOutMethod = getLogOutMethod = 
+              io.grpc.MethodDescriptor.<ChatOuterClass.User, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "Chat", "LogOut"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ChatOuterClass.User.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+                  .setSchemaDescriptor(new ChatMethodDescriptorSupplier("LogOut"))
+                  .build();
+          }
+        }
+     }
+     return getLogOutMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -164,7 +195,14 @@ public final class ChatGrpc {
       asyncUnimplementedUnaryCall(getLogInMethod(), responseObserver);
     }
 
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+    /**
+     */
+    public void logOut(ChatOuterClass.User request,
+                       io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getLogOutMethod(), responseObserver);
+    }
+
+    @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getWriteMethod(),
@@ -187,6 +225,13 @@ public final class ChatGrpc {
                 ChatOuterClass.User,
                 com.google.protobuf.Empty>(
                   this, METHODID_LOG_IN)))
+          .addMethod(
+            getLogOutMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                ChatOuterClass.User,
+                com.google.protobuf.Empty>(
+                  this, METHODID_LOG_OUT)))
           .build();
     }
   }
@@ -203,7 +248,7 @@ public final class ChatGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected ChatStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new ChatStub(channel, callOptions);
@@ -232,6 +277,14 @@ public final class ChatGrpc {
       asyncUnaryCall(
           getChannel().newCall(getLogInMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void logOut(ChatOuterClass.User request,
+                       io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLogOutMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -246,7 +299,7 @@ public final class ChatGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected ChatBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new ChatBlockingStub(channel, callOptions);
@@ -272,6 +325,13 @@ public final class ChatGrpc {
       return blockingUnaryCall(
           getChannel(), getLogInMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.google.protobuf.Empty logOut(ChatOuterClass.User request) {
+      return blockingUnaryCall(
+          getChannel(), getLogOutMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -286,7 +346,7 @@ public final class ChatGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected ChatFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new ChatFutureStub(channel, callOptions);
@@ -315,11 +375,20 @@ public final class ChatGrpc {
       return futureUnaryCall(
           getChannel().newCall(getLogInMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> logOut(
+        ChatOuterClass.User request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLogOutMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_WRITE = 0;
   private static final int METHODID_SUBSCRIBE = 1;
   private static final int METHODID_LOG_IN = 2;
+  private static final int METHODID_LOG_OUT = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -334,8 +403,8 @@ public final class ChatGrpc {
       this.methodId = methodId;
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_WRITE:
@@ -350,13 +419,17 @@ public final class ChatGrpc {
           serviceImpl.logIn((ChatOuterClass.User) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
+        case METHODID_LOG_OUT:
+          serviceImpl.logOut((ChatOuterClass.User) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -370,12 +443,12 @@ public final class ChatGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     ChatBaseDescriptorSupplier() {}
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return ChatOuterClass.getDescriptor();
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("Chat");
     }
@@ -395,7 +468,7 @@ public final class ChatGrpc {
       this.methodName = methodName;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
@@ -414,6 +487,7 @@ public final class ChatGrpc {
               .addMethod(getWriteMethod())
               .addMethod(getSubscribeMethod())
               .addMethod(getLogInMethod())
+              .addMethod(getLogOutMethod())
               .build();
         }
       }

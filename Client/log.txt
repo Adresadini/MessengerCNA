@@ -1,0 +1,11 @@
+"Alex" successfully logged in!
+Alex sent the message: "hey"
+Alex sent the message: "watch me logout"
+"Alex" successfully logged out!
+"Alex" successfully logged in!
+Alex sent the message: "hey again boys"
+Alex sent the message: "watch me logout again"
+"Alex" successfully logged in!
+Alex sent the message: "hey again"
+Alex sent the message: "logging out again"
+Alex sent the message: "bye"
