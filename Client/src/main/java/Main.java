@@ -5,53 +5,71 @@ import proto.ChatGrpc;
 import proto.ChatOuterClass;
 import com.google.protobuf.Empty;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.util.Scanner;
 
 import com.google.protobuf.Timestamp;
 
-public class Main {
+public class Main
+{
     public static Scanner sc = new Scanner(System.in);
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         ManagedChannel channel = ManagedChannelBuilder.forAddress
                 ("localhost", 8999).usePlaintext().build();
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
 
         boolean isOpen = true;
-        Thread t = new Thread() {
-            public void run() {
+        Thread t = new Thread()
+        {
+            public void run()
+            {
                 final String[] currentMessage = {""};
-                while (isOpen) {
+                while (isOpen)
+                {
                     chatStub.subscribe(
                             Empty.newBuilder().build(),
-                            new StreamObserver<ChatOuterClass.ChatLog>() {
+                            new StreamObserver<ChatOuterClass.ChatLog>()
+                            {
                                 @Override
-                                public void onNext(ChatOuterClass.ChatLog chatLog) {
-                                    if (!chatLog.getMessage().equals(currentMessage[0])) {
+                                public void onNext(ChatOuterClass.ChatLog chatLog)
+                                {
+                                    if (!chatLog.getMessage().equals(currentMessage[0]))
+                                    {
                                         currentMessage[0] = chatLog.getMessage();
                                         if (!chatLog.getMessage().isEmpty())
-                                            System.out.println(chatLog.getName() + ": " + chatLog.getMessage());
+                                            System.out.println(chatLog.getName() + ": " +
+                                                    chatLog.getMessage());
                                     }
 
                                 }
 
                                 @Override
-                                public void onError(Throwable throwable) {
+                                public void onError(Throwable throwable)
+                                {
                                     System.out.println("Error: " + throwable.getMessage());
                                 }
 
                                 @Override
-                                public void onCompleted() {
+                                public void onCompleted()
+                                {
 
                                 }
                             }
                     );
-                    try {
+                    try
+                    {
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException e)
+                    {
                         e.printStackTrace();
                     }
                 }
@@ -63,24 +81,39 @@ public class Main {
         String name = sc.nextLine();
         chatStub.logIn(
                 ChatOuterClass.User.newBuilder().setName(name).build(),
-                new StreamObserver<Empty>() {
+                new StreamObserver<Empty>()
+                {
                     @Override
-                    public void onNext(Empty empty) {
+                    public void onNext(Empty empty)
+                    {
                         System.out.println("You have successfully logged in!");
+                        try
+                        {
+                            String filename = "log.txt";
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("\""+ name +"\""+ " successfully logged in!\n");
+                            fw.close();
+                        } catch (IOException ioe)
+                        {
+                            System.err.println("IOException: " + ioe.getMessage());
+                        }
                     }
 
                     @Override
-                    public void onError(Throwable throwable) {
+                    public void onError(Throwable throwable)
+                    {
                         System.out.println("Error: " + throwable.getMessage());
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onCompleted()
+                    {
 
                     }
                 }
         );
-        while (isOpen) {
+        while (isOpen)
+        {
 
             String message = sc.nextLine();
 
@@ -92,19 +125,34 @@ public class Main {
 
             chatStub.write(
                     ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).build(),
-                    new StreamObserver<Empty>() {
+                    new StreamObserver<Empty>()
+                    {
                         @Override
-                        public void onNext(Empty empty) {
+                        public void onNext(Empty empty)
+                        {
+
                             System.out.println("Message sent");
+                            try
+                            {
+                                String filename = "log.txt";
+                                FileWriter fw = new FileWriter(filename, true);
+                                fw.write(name + " sent the message: " + "\""+ message +"\"" + "\n");
+                                fw.close();
+                            } catch (IOException ioe)
+                            {
+                                System.err.println("IOException: " + ioe.getMessage());
+                            }
                         }
 
                         @Override
-                        public void onError(Throwable throwable) {
+                        public void onError(Throwable throwable)
+                        {
                             System.out.println("Error: " + throwable.getMessage());
                         }
 
                         @Override
-                        public void onCompleted() {
+                        public void onCompleted()
+                        {
 
                         }
                     }
