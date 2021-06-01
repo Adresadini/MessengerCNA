@@ -36,7 +36,7 @@ public class Main {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone(ZoneId.of("UTC"));
 
-        System.out.print("What is your name: ");
+        System.out.print("[What is your name:] ");
         String name = sc.nextLine();
 
         chatStub.logIn(
@@ -44,12 +44,12 @@ public class Main {
                 new StreamObserver<Empty>() {
                     @Override
                     public void onNext(Empty empty) {
-                        System.out.println("You have successfully logged in!");
+                        System.out.println("[You have successfully logged in!]");
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        System.out.println("Error: " + throwable.getMessage());
+                        System.out.println("[Error: " + throwable.getMessage() + "]");
                         System.exit(-1);
                     }
 
@@ -86,7 +86,7 @@ public class Main {
 
                                 @Override
                                 public void onError(Throwable throwable) {
-                                    System.out.println("Error: " + throwable.getMessage());
+                                    System.out.println("[Error: " + throwable.getMessage() + "]");
                                 }
 
                                 @Override
@@ -121,7 +121,7 @@ public class Main {
                                 new StreamObserver<Empty>() {
                                     @Override
                                     public void onNext(Empty empty) {
-                                        System.out.println("You have successfully logged out!");
+                                        System.out.println("[You have successfully logged out!]");
                                     }
 
                                     @Override
@@ -139,7 +139,7 @@ public class Main {
                         channel.shutdown();
                         System.exit(0);
                     case "online":
-                        System.out.println("[List of online users]");
+                        System.out.println("[List of online users:]");
                         chatStub.online(
                                 Empty.newBuilder().build(),
                                 new StreamObserver<ChatOuterClass.User>() {
@@ -150,7 +150,7 @@ public class Main {
 
                                     @Override
                                     public void onError(Throwable throwable) {
-                                        System.out.println("Error: " + throwable.getMessage());
+                                        System.out.println("[Error: " + throwable.getMessage() + "]");
                                     }
 
                                     @Override
@@ -173,7 +173,7 @@ public class Main {
 
                                         @Override
                                         public void onError(Throwable throwable) {
-                                            System.out.println("Error: " + throwable.getMessage());
+                                            System.out.println("[Error: " + throwable.getMessage() + "]");
                                         }
 
                                         @Override
@@ -183,11 +183,11 @@ public class Main {
                                     }
                             );
                         } catch (Exception e) {
-                            System.out.println("Invalid command!");
+                            System.out.println("[Invalid command!]");
                         }
                         break;
                     default:
-                        System.out.println("Invalid Command!");
+                        System.out.println("[Invalid Command!]");
                 }
             else {
                 chatStub.write(
@@ -200,7 +200,7 @@ public class Main {
 
                             @Override
                             public void onError(Throwable throwable) {
-                                System.out.println("Error: " + throwable.getMessage());
+                                System.out.println("[Error: " + throwable.getMessage() + "]");
                             }
 
                             @Override
