@@ -55,7 +55,7 @@ public class Chat extends ChatGrpc.ChatImplBase {
     @Override
     public void logOut(ChatOuterClass.User request, StreamObserver<Empty> responseObserver) {
         System.out.println("[" + formatter.format(Instant.now()) + "] \"" + request.getName() + "\" logged out");
-        logMessage("[" + formatter.format(Instant.now()) + "] \"" + request.getName() + "\" logged in\n");
+        logMessage("[" + formatter.format(Instant.now()) + "] \"" + request.getName() + "\" logged out\n");
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
     }
