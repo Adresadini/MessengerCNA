@@ -9,3 +9,29 @@ Alex sent the message: "watch me logout again"
 Alex sent the message: "hey again"
 Alex sent the message: "logging out again"
 Alex sent the message: "bye"
+"Alex" successfully logged in!
+Alex sent the message: "eyo"
+"Alex" successfully logged out!
+"/logout" successfully logged in!
+/logout sent the message: "sick"
+"Alex" successfully logged in!
+Alex sent the message: "wtf"
+"Alex" successfully logged out!
+"Alex" successfully logged in!
+"Alex" sent the message: "hello there"
+"Alex" sent the message: "how are ya"
+"Matt" successfully logged in!
+"Matt" sent the message: "good"
+"Matt" sent the message: "just joined :)"
+"Matt" sent the message: "anyways"
+"Matt" sent the message: "bye"
+"Matt" successfully logged out!
+"Alex" successfully logged in!
+"Alex" sent the message: "hello there"
+"Alex" successfully logged out!
+"Matt" successfully logged in!
+"Matt" sent the message: "Fuck you Alex"
+"Matt" successfully logged out!
+"Alex" successfully logged in!
+"Matt" successfully logged in!
+"Matt" sent the message: "hey"

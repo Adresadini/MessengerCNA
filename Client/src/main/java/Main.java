@@ -7,9 +7,6 @@ import com.google.protobuf.Empty;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -19,12 +16,53 @@ import com.google.protobuf.Timestamp;
 public class Main {
     public static Scanner sc = new Scanner(System.in);
 
+    public static void pauseFor(int millis) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(millis);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress
                 ("localhost", 8999).usePlaintext().build();
 
         ChatGrpc.ChatStub chatStub = ChatGrpc.newStub(channel);
+
+        System.out.print("What is your name: ");
+        String name = sc.nextLine();
+
+        chatStub.logIn(
+                ChatOuterClass.User.newBuilder().setName(name).build(),
+                new StreamObserver<Empty>() {
+                    @Override
+                    public void onNext(Empty empty) {
+                        System.out.println("You have successfully logged in!");
+                        try {
+                            String filename = "log.txt";
+                            FileWriter fw = new FileWriter(filename, true);
+                            fw.write("\"" + name + "\"" + " successfully logged in!\n");
+                            fw.close();
+                        } catch (IOException ioe) {
+                            System.err.println("IOException: " + ioe.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        System.out.println("Error: " + throwable.getMessage());
+                        System.exit(-1);
+                    }
+
+                    @Override
+                    public void onCompleted() {
+
+                    }
+                }
+        );
 
         boolean isOpen = true;
         Thread t = new Thread() {
@@ -66,39 +104,9 @@ public class Main {
         };
         t.start();
 
-        System.out.print("What is your name: ");
-        String name = sc.nextLine();
-        chatStub.logIn(
-                ChatOuterClass.User.newBuilder().setName(name).build(),
-                new StreamObserver<Empty>() {
-                    @Override
-                    public void onNext(Empty empty) {
-                        System.out.println("You have successfully logged in!");
-                        try {
-                            String filename = "log.txt";
-                            FileWriter fw = new FileWriter(filename, true);
-                            fw.write("\"" + name + "\"" + " successfully logged in!\n");
-                            fw.close();
-                        } catch (IOException ioe) {
-                            System.err.println("IOException: " + ioe.getMessage());
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        System.out.println("Error: " + throwable.getMessage());
-                    }
-
-                    @Override
-                    public void onCompleted() {
-
-                    }
-                }
-        );
         while (isOpen) {
 
             String message = sc.nextLine();
-
 
             Instant time = Instant.now();
             Timestamp currentTime = Timestamp.newBuilder().setSeconds(time.getEpochSecond())
@@ -135,6 +143,7 @@ public class Main {
                                 }
                         );
                         channel.shutdown();
+                        pauseFor(10);
                         System.exit(0);
                 }
 
@@ -148,7 +157,7 @@ public class Main {
                             try {
                                 String filename = "log.txt";
                                 FileWriter fw = new FileWriter(filename, true);
-                                fw.write(name + " sent the message: " + "\"" + message + "\"" + "\n");
+                                fw.write("\"" + name + "\" sent the message: " + "\"" + message + "\"" + "\n");
                                 fw.close();
                             } catch (IOException ioe) {
                                 System.err.println("IOException: " + ioe.getMessage());
