@@ -27,8 +27,13 @@ public class Main {
         }
     }
 
+    public static void disableWarning() {
+        System.err.close();
+        System.setErr(System.out);
+    }
 
     public static void main(String[] args) {
+        disableWarning();
         ManagedChannel channel = ManagedChannelBuilder.forAddress
                 ("localhost", 8999).usePlaintext().build();
 
@@ -73,7 +78,7 @@ public class Main {
                                     if (!chatLog.getMessage().equals(currentMessage[0])) {
                                         currentMessage[0] = chatLog.getMessage();
                                         if (!chatLog.getMessage().isEmpty()) {
-                                            if (chatLog.getRecipient().equals(name) || chatLog.getName().equals(name))
+                                            if (!chatLog.getRecipient().equals("") && (chatLog.getRecipient().equals(name) || chatLog.getName().equals(name)))
                                                 System.out.println("[" + formatter.format(Instant.ofEpochSecond(chatLog.getTime().getSeconds(), chatLog.getTime().getNanos()))
                                                         + "] " + chatLog.getName() + " -> " + chatLog.getRecipient() + ": " + chatLog.getMessage());
                                             else if(chatLog.getRecipient().equals(""))

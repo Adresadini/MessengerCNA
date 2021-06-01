@@ -36,7 +36,7 @@ public class Chat extends ChatGrpc.ChatImplBase {
 
         if (request.getRecipient() != "" && onlineUsers.contains(request.getRecipient())) {
             logMessage("[" + formatter.format(Instant.ofEpochSecond(request.getTime().getSeconds(), request.getTime().getNanos()))
-                    + "] \"" + request.getName() + "\" whispered to " + request.getRecipient() + ": " + "\"" + request.getMessage() + "\"" + "\n");
+                    + "] \"" + request.getName() + "\" whispered to \"" + request.getRecipient() + "\": " + "\"" + request.getMessage() + "\"" + "\n");
         } else {
             logMessage("[" + formatter.format(Instant.ofEpochSecond(request.getTime().getSeconds(), request.getTime().getNanos()))
                     + "] \"" + request.getName() + "\" typed: " + "\"" + request.getMessage() + "\"" + "\n");
