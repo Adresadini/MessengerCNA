@@ -39,29 +39,27 @@ public final class ChatOuterClass {
         getNameBytes();
 
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     boolean hasTime();
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     com.google.protobuf.Timestamp getTime();
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     com.google.protobuf.TimestampOrBuilder getTimeOrBuilder();
+
+    /**
+     * <code>string recipient = 4;</code>
+     */
+    java.lang.String getRecipient();
+    /**
+     * <code>string recipient = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientBytes();
   }
   /**
    * Protobuf type {@code ChatLog}
@@ -78,6 +76,7 @@ public final class ChatOuterClass {
     private ChatLog() {
       message_ = "";
       name_ = "";
+      recipient_ = "";
     }
 
     @java.lang.Override
@@ -127,6 +126,12 @@ public final class ChatOuterClass {
                 time_ = subBuilder.buildPartial();
               }
 
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              recipient_ = s;
               break;
             }
             default: {
@@ -232,34 +237,56 @@ public final class ChatOuterClass {
     public static final int TIME_FIELD_NUMBER = 3;
     private com.google.protobuf.Timestamp time_;
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     public boolean hasTime() {
       return time_ != null;
     }
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     public com.google.protobuf.Timestamp getTime() {
       return time_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : time_;
     }
     /**
-     * <pre>
-     *optional string recipient=4;
-     * </pre>
-     *
      * <code>.google.protobuf.Timestamp time = 3;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
       return getTime();
+    }
+
+    public static final int RECIPIENT_FIELD_NUMBER = 4;
+    private volatile java.lang.Object recipient_;
+    /**
+     * <code>string recipient = 4;</code>
+     */
+    public java.lang.String getRecipient() {
+      java.lang.Object ref = recipient_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        recipient_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string recipient = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientBytes() {
+      java.lang.Object ref = recipient_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        recipient_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -285,6 +312,9 @@ public final class ChatOuterClass {
       if (time_ != null) {
         output.writeMessage(3, getTime());
       }
+      if (!getRecipientBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, recipient_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -303,6 +333,9 @@ public final class ChatOuterClass {
       if (time_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getTime());
+      }
+      if (!getRecipientBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, recipient_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -328,6 +361,8 @@ public final class ChatOuterClass {
         if (!getTime()
             .equals(other.getTime())) return false;
       }
+      if (!getRecipient()
+          .equals(other.getRecipient())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -347,6 +382,8 @@ public final class ChatOuterClass {
         hash = (37 * hash) + TIME_FIELD_NUMBER;
         hash = (53 * hash) + getTime().hashCode();
       }
+      hash = (37 * hash) + RECIPIENT_FIELD_NUMBER;
+      hash = (53 * hash) + getRecipient().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -490,6 +527,8 @@ public final class ChatOuterClass {
           time_ = null;
           timeBuilder_ = null;
         }
+        recipient_ = "";
+
         return this;
       }
 
@@ -523,6 +562,7 @@ public final class ChatOuterClass {
         } else {
           result.time_ = timeBuilder_.build();
         }
+        result.recipient_ = recipient_;
         onBuilt();
         return result;
       }
@@ -581,6 +621,10 @@ public final class ChatOuterClass {
         }
         if (other.hasTime()) {
           mergeTime(other.getTime());
+        }
+        if (!other.getRecipient().isEmpty()) {
+          recipient_ = other.recipient_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -753,20 +797,12 @@ public final class ChatOuterClass {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeBuilder_;
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public boolean hasTime() {
         return timeBuilder_ != null || time_ != null;
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public com.google.protobuf.Timestamp getTime() {
@@ -777,10 +813,6 @@ public final class ChatOuterClass {
         }
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public Builder setTime(com.google.protobuf.Timestamp value) {
@@ -797,10 +829,6 @@ public final class ChatOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public Builder setTime(
@@ -815,10 +843,6 @@ public final class ChatOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public Builder mergeTime(com.google.protobuf.Timestamp value) {
@@ -837,10 +861,6 @@ public final class ChatOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public Builder clearTime() {
@@ -855,10 +875,6 @@ public final class ChatOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimeBuilder() {
@@ -867,10 +883,6 @@ public final class ChatOuterClass {
         return getTimeFieldBuilder().getBuilder();
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       public com.google.protobuf.TimestampOrBuilder getTimeOrBuilder() {
@@ -882,10 +894,6 @@ public final class ChatOuterClass {
         }
       }
       /**
-       * <pre>
-       *optional string recipient=4;
-       * </pre>
-       *
        * <code>.google.protobuf.Timestamp time = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -900,6 +908,75 @@ public final class ChatOuterClass {
           time_ = null;
         }
         return timeBuilder_;
+      }
+
+      private java.lang.Object recipient_ = "";
+      /**
+       * <code>string recipient = 4;</code>
+       */
+      public java.lang.String getRecipient() {
+        java.lang.Object ref = recipient_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          recipient_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string recipient = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientBytes() {
+        java.lang.Object ref = recipient_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          recipient_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string recipient = 4;</code>
+       */
+      public Builder setRecipient(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        recipient_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string recipient = 4;</code>
+       */
+      public Builder clearRecipient() {
+        
+        recipient_ = getDefaultInstance().getRecipient();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string recipient = 4;</code>
+       */
+      public Builder setRecipientBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        recipient_ = value;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1523,15 +1600,17 @@ public final class ChatOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\nchat.proto\032\033google/protobuf/empty.prot" +
-      "o\032\037google/protobuf/timestamp.proto\"R\n\007Ch" +
+      "o\032\037google/protobuf/timestamp.proto\"e\n\007Ch" +
       "atLog\022\017\n\007message\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022(\n\004" +
-      "time\030\003 \001(\0132\032.google.protobuf.Timestamp\"\024" +
-      "\n\004User\022\014\n\004name\030\001 \001(\t2\271\001\n\004Chat\022+\n\005Write\022\010" +
-      ".ChatLog\032\026.google.protobuf.Empty\"\000\022/\n\tSu" +
-      "bscribe\022\026.google.protobuf.Empty\032\010.ChatLo" +
-      "g\"\000\022(\n\005LogIn\022\005.User\032\026.google.protobuf.Em" +
-      "pty\"\000\022)\n\006LogOut\022\005.User\032\026.google.protobuf" +
-      ".Empty\"\000B\007\n\005protob\006proto3"
+      "time\030\003 \001(\0132\032.google.protobuf.Timestamp\022\021" +
+      "\n\trecipient\030\004 \001(\t\"\024\n\004User\022\014\n\004name\030\001 \001(\t2" +
+      "\346\001\n\004Chat\022+\n\005Write\022\010.ChatLog\032\026.google.pro" +
+      "tobuf.Empty\"\000\022/\n\tSubscribe\022\026.google.prot" +
+      "obuf.Empty\032\010.ChatLog\"\000\022(\n\005LogIn\022\005.User\032\026" +
+      ".google.protobuf.Empty\"\000\022)\n\006LogOut\022\005.Use" +
+      "r\032\026.google.protobuf.Empty\"\000\022+\n\006Online\022\026." +
+      "google.protobuf.Empty\032\005.User\"\0000\001B\007\n\005prot" +
+      "ob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1552,7 +1631,7 @@ public final class ChatOuterClass {
     internal_static_ChatLog_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ChatLog_descriptor,
-        new java.lang.String[] { "Message", "Name", "Time", });
+        new java.lang.String[] { "Message", "Name", "Time", "Recipient", });
     internal_static_User_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_User_fieldAccessorTable = new
