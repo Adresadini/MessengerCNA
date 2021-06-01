@@ -109,7 +109,7 @@ public class Main {
                     .setNanos(time.getNano()).build();
 
             if (message.charAt(0) == '/')
-                switch (message.substring(1)) {
+                switch (message.split(" ")[0].substring(1)) {
                     case "logout":
                         chatStub.logOut(
                                 ChatOuterClass.User.newBuilder().setName(name).build(),
@@ -134,7 +134,7 @@ public class Main {
                         channel.shutdown();
                         System.exit(0);
                     case "online":
-                        System.out.println("List of online users: ");
+                        System.out.println("[List of online users]");
                         chatStub.online(
                             Empty.newBuilder().build(),
                             new StreamObserver<ChatOuterClass.User>() {
@@ -154,32 +154,60 @@ public class Main {
                                 }
                             }
                     );
+                        break;
+                    case "whisper":
+                        String[] command = message.split(" ",3);
+                        try{
+                            chatStub.write(
+                                    ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(command[2]).setTime(currentTime).setRecipient(command[1]).build(),
+                                    new StreamObserver<Empty>() {
+                                        @Override
+                                        public void onNext(Empty empty) {
 
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable throwable) {
+                                            System.out.println("Error: " + throwable.getMessage());
+                                        }
+
+                                        @Override
+                                        public void onCompleted() {
+
+                                        }
+                                    }
+                            );
+                        }
+                        catch (Exception e){
+                            System.out.println("Invalid command!");
+                        }
+                        break;
                     default:
                         System.out.println("Invalid Command!");
                 }
+            else
+            {
+                chatStub.write(
+                        ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).setRecipient("").build(),
+                        new StreamObserver<Empty>() {
+                            @Override
+                            public void onNext(Empty empty) {
 
-            chatStub.write(
-                    ChatOuterClass.ChatLog.newBuilder().setName(name).setMessage(message).setTime(currentTime).build(),
-                    new StreamObserver<Empty>() {
-                        @Override
-                        public void onNext(Empty empty) {
-                            System.out.println("Message sent!");
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+                                System.out.println("Error: " + throwable.getMessage());
+                            }
+
+                            @Override
+                            public void onCompleted() {
+
+                            }
                         }
-
-                        @Override
-                        public void onError(Throwable throwable) {
-                            System.out.println("Error: " + throwable.getMessage());
-                        }
-
-                        @Override
-                        public void onCompleted() {
-
-                        }
-                    }
-            );
+                );
+            }
         }
-
         channel.shutdown();
     }
 }
